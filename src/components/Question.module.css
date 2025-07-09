@@ -1,0 +1,48 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option {
+  background-color: #3f3f3f;
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.option:focus {
+  outline: none;
+}
+.true {
+  background-color: green;
+}
+.false {
+  background-color: orange;
+}
+.selected {
+  transform: translateX(1rem);
+  transition: 0.4s ease all;
+}
+
+.timer {
+  background-color: #3f3f3f;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+}
+
+.option:disabled {
+  color: white;
+
+  cursor: not-allowed;
+}
