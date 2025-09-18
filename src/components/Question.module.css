@@ -10,11 +10,14 @@
 }
 
 .option {
-  background-color: #3f3f3f;
+  background-color: #495057;
+  color: white;
+  text-align: start;
+  font-size: 1.1rem;
   width: 100%;
   display: block;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
   cursor: pointer;
   border: none;
   outline: none;
@@ -23,12 +26,14 @@
 
 .option:focus {
   outline: none;
+  border: none;
 }
+
 .true {
-  background-color: green;
+  background-color: #1098ad;
 }
 .false {
-  background-color: orange;
+  background-color: #ffa94d;
 }
 .selected {
   transform: translateX(1rem);
@@ -36,13 +41,20 @@
 }
 
 .timer {
-  background-color: #3f3f3f;
+  /* background-color: #3f3f3f; */
   padding: 0.8rem 1.6rem;
-  border-radius: 5px;
+  border-radius: 2rem;
+  border: 2px solid #495057;
 }
 
 .option:disabled {
   color: white;
 
   cursor: not-allowed;
+}
+
+.nextBtn {
+  color: white;
+  background-color: #495057;
+  border-radius: 2rem;
 }

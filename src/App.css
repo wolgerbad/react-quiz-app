@@ -1,6 +1,13 @@
 .container {
-  border: 2px solid #3f3f3f;
+  color: white;
   padding: 2rem 4rem;
-  min-width: 480px;
+  width: 640px;
   border-radius: 4px;
+}
+
+@media (width <= 600px) {
+  .container {
+    width: 300px;
+    height: fit-content;
+  }
 }

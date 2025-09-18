@@ -1,5 +1,5 @@
-import { useQuestions } from "./QuestionsProvider";
-import styles from "./Finish.module.css";
+import { useQuestions } from './QuestionProvider';
+import styles from './Finish.module.css';
 
 function Finish() {
   const { userPoints, numPoints, handleRestart } = useQuestions();

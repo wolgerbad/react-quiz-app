@@ -1,8 +1,17 @@
-import { useState } from "react";
-import styles from "./Question.module.css";
-import { useQuestions } from "./QuestionsProvider";
+import { useState } from 'react';
+import styles from './Question.module.css';
+import { useQuestions } from './QuestionProvider';
 
-function Question({ question }) {
+type QuestionProps = {
+  question: {
+    question: string;
+    options: string[];
+    correctOption: number;
+    points: number;
+  };
+};
+
+function Question({ question }: QuestionProps) {
   const {
     curQuestion,
     numQuestions,
@@ -14,7 +23,14 @@ function Question({ question }) {
     handleNext,
   } = useQuestions();
   const [hasAnswered, setHasAnswered] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+
+  function handleSelect(index: number) {
+    setHasAnswered(true);
+    setSelectedAnswer(index);
+    if (index === question.correctOption)
+      setUserPoints((userPoints) => userPoints + question.points);
+  }
 
   return (
     <div>
@@ -29,19 +45,13 @@ function Question({ question }) {
       <div>
         <h2>{question.question}</h2>
         {question.options.map((opt, index) => (
-          <div>
+          <div key={question.question}>
             <button
-              onClick={() => {
-                setHasAnswered(true);
-                setSelectedAnswer(index);
-                index === question.correctOption &&
-                  setUserPoints((userPoints) => userPoints + question.points);
-              }}
+              onClick={() => handleSelect(index)}
               className={`${styles.option} ${
                 hasAnswered &&
                 (index === question.correctOption ? styles.true : styles.false)
               } ${index === selectedAnswer && styles.selected} `}
-              key={question.question}
               disabled={hasAnswered}
             >
               {opt}
@@ -50,12 +60,16 @@ function Question({ question }) {
         ))}
       </div>
       <div className={styles.flex}>
-        <timer className={styles.timer}>
-          {min < 10 ? 0 : ""}
-          {min}:{sec < 10 ? 0 : ""}
+        <span className={styles.timer}>
+          {min < 10 ? 0 : ''}
+          {min}:{sec < 10 ? 0 : ''}
           {sec}
-        </timer>
-        {hasAnswered && <button onClick={handleNext}>Next</button>}
+        </span>
+        {hasAnswered && (
+          <button className="button" onClick={handleNext}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   );
