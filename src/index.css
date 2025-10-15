@@ -12,6 +12,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root {
+  height: 100vh;
+}
+
+.codystar-regular {
+  font-family: 'Codystar', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+}
 
 a {
   font-weight: 500;
@@ -54,16 +63,3 @@ h1 {
   background-color: #343a40;
   border: 1px solid #495057;
 }
-/* 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

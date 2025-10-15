@@ -1,8 +1,14 @@
+.appContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   color: white;
   padding: 2rem 4rem;
   width: 640px;
   border-radius: 4px;
+  margin-top: -1rem;
 }
 
 @media (width <= 600px) {
