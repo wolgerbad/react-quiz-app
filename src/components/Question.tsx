@@ -45,7 +45,7 @@ function Question({ question }: QuestionProps) {
       <div>
         <h2>{question.question}</h2>
         {question.options.map((opt, index) => (
-          <div key={question.question}>
+          <div key={`${question.question} ${opt + index}`}>
             <button
               onClick={() => handleSelect(index)}
               className={`${styles.option} ${

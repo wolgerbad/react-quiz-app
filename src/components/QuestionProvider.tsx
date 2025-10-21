@@ -6,7 +6,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 }
 */
 
-const BASE_URL = 'http://localhost:9001';
 const SEC_PER_QUESTION = 30;
 
 type ChildrenProps = {
@@ -40,17 +39,13 @@ const QuestionContext = createContext<QuestionContextType | null>(null);
 
 export function QuestionProvider({ children }: ChildrenProps) {
   const [status, setStatus] = useState('');
-  const [questions, setQuestions] = useState<QuestionProps[] | []>(() => {
-    const qs = localStorage.getItem('questions');
-    const value = qs !== null ? JSON.parse(qs) : [];
-    return value;
-  });
+  const [questions, setQuestions] = useState<QuestionProps[] | []>([]);
   const [curQuestion, setCurQuestion] = useState(1);
   const [userPoints, setUserPoints] = useState(0);
   const [totalTime, setTotalTime] = useState(3600);
 
   const numQuestions = questions.length;
-  const numPoints = questions.reduce(
+  const numPoints = questions?.reduce(
     (sum: number, q: QuestionProps) => sum + q.points,
     0
   );
@@ -72,10 +67,11 @@ export function QuestionProvider({ children }: ChildrenProps) {
 
   useEffect(function () {
     async function fetchQuestions() {
-      const res = await fetch(`${BASE_URL}/questions`);
+      const res = await fetch(`https://jsonkeeper.com/b/AOVCG`);
       setStatus('loading');
       const data = await res.json();
-      setQuestions(data);
+      const questionsFromDb = data.questions;
+      setQuestions(questionsFromDb);
       localStorage.setItem('questions', JSON.stringify(data));
       setStatus('start');
     }
